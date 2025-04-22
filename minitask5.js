@@ -10,24 +10,49 @@ function queue(name, time) {
   });
 }
 
-queue("Jhon", 1500)
-  .then(function (Callback) {
-    console.log(Callback);
-    queue("Ed", 2000)
-      .then(function (Callback) {
-        console.log(Callback);
-        queue("Jane", 500)
-          .then(function (Callback) {
-            console.log(Callback);
-          })
-          .catch(function () {
-            console.log(Callback);
-          });
-      })
-      .catch(function () {
-        console.log(Callback);
-      });
-  })
-  .catch(function () {
-    console.log(Callback);
-  });
+// queue("Jhon", 1500)
+//   .then(function (Callback) {
+//     console.log(Callback);
+//     queue("Ed", 2000)
+//       .then(function (Callback) {
+//         console.log(Callback);
+//         queue("Jane", 500)
+//           .then(function (Callback) {
+//             console.log(Callback);
+//           })
+//           .catch(function () {
+//             console.log(Callback);
+//           });
+//       })
+//       .catch(function () {
+//         console.log(Callback);
+//       });
+//   })
+//   .catch(function () {
+//     console.log(Callback);
+//   });
+
+async function main() {
+  await queue("Jhon", 1500)
+    .then(function (Callback) {
+      console.log(Callback);
+      queue("Ed", 2000)
+        .then(function (Callback) {
+          console.log(Callback);
+          queue("Jane", 500)
+            .then(function (Callback) {
+              console.log(Callback);
+            })
+            .catch(function () {
+              console.log(Callback);
+            });
+        })
+        .catch(function () {
+          console.log(Callback);
+        });
+    })
+    .catch(function () {
+      console.log(Callback);
+    });
+}
+main();
