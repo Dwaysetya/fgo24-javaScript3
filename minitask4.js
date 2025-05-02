@@ -1,56 +1,42 @@
-// const palindromDetector = (item) => {
-//   const words = item.split("");
-//   const reversWords = words.reverse();
-//   const stringWord = reversWords.join("");
-//   return stringWord;
-// };
+const word = "malam";
+console.log(
+  word.split("").reverse().join("") === word ? "palindrom" : "Bukan palindrome"
+);
 
-// const textPalindrom = "malam";
-// const reversString = palindromDetector(textPalindrom);
-// if (reversString === textPalindrom) {
-//   console.log(`${reversString} adalah Palindrom`);
-// } else {
-//   console.log(`${reversString} Bukan Palindrom`);
-// }
+// built in method
+const reverseWords = (str) => {
+  return str.toLowerCase().split(" ").reverse().join("");
+};
 
-// // const word = "kasur"
-// // console.log(word.split("").reverse().join("")===word? "palindrom":"Bukan palindrome")
+const text = "Hello Word";
+const result = reverseWords(text);
+console.log(result);
 
-// const reversWords = (str) => {
-//   const changeWords = str.toLowerCase();
-//   const words = changeWords.split(" ");
-//   const reversWords = words.reverse();
-//   const stringWord = reversWords.join("");
-//   return stringWord;
-// };
+// palindrom
+const kalimat = "malam";
+let hasil = "";
 
-// const textReserve = "Hello Word";
-// const result = reversWords(textReserve);
-// // console.log(result);
+for (let x = 0; x < kalimat.length; x++) {
+  hasil = hasil + kalimat[x];
+}
+if (hasil === kalimat) {
+  console.log("palindrom");
+} else {
+  console.log("Bukan palindrom");
+}
 
-// const text = "malam";
-// let hasil = "";
-
-// for (let x = 0; x < text.length; x++) {
-//   hasil = hasil + text[x];
-// }
-// if (hasil === text) {
-//   console.log("palindrom");
-// } else {
-//   console.log("Bukan palindrom");
-// }
-
-const reverse = "apa ini";
-let result = "";
+// manual
+const reverse = "apa itu";
+let resultReverse = "";
 let penampung = "";
 
 for (let i = reverse.length - 1; i >= 0; i--) {
   if (reverse[i] == " ") {
-    result += penampung + " ";
+    resultReverse += penampung + " ";
     penampung = "";
   } else {
     penampung = reverse[i] + penampung;
   }
 }
-result += penampung;
-console.log(result);
+resultReverse += penampung;
+console.log(resultReverse);

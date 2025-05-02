@@ -237,14 +237,17 @@ console.log(sum.toString());
 // 5. call
 // method dalam function ini berguna untuk memanggil kembali sebuah fungsi
 function Product1(name, price) {
-  this.name = name;
-  this.price = price;
+  // product mempunyai 2 parameter
+  this.name = name; // simpan parameter name ke dalam name
+  this.price = price; // simpan parameter price kedalam price
 }
 
 function Food1(name, price) {
-  Product1.call(this, name, price);
-  this.category = "food";
+  Product1.call(this, name, price); // pada kode ini fungsi product dipanggil kembali menggunakan .call
+  // jalankan fungsi product dengan this sebagai object yang ditentukan
+  this.category = "food"; // menambahkan kategori baru
 }
 
-console.log(new Food1("cheese", 50).price);
-// Expected output: "cheese"
+console.log(new Food1("cheese", 50).name); // new akan membuat instansi baru
+// food1 akan dipanggil dan objek baru akan mengisi properti di dalam constructor
+// output: "cheese"
