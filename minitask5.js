@@ -12,37 +12,59 @@ function queue(name, time) {
 
 // Then - Chatch
 
-// queue("Jhon", 1500)
-//   .then(function (Callback) {
-//     console.log(Callback);
-//     queue("Ed", 2000)
-//       .then(function (Callback) {
-//         console.log(Callback);
-//         queue("Jane", 500)
-//           .then(function (Callback) {
-//             console.log(Callback);
-//           })
-//           .catch(function () {
-//             console.log(Callback);
-//           });
-//       })
-//       .catch(function () {
-//         console.log(Callback);
-//       });
-//   })
-//   .catch(function () {
-//     console.log(Callback);
-//   });
-
-async function main() {
-  await queue("Jhon", 1500).then(function (Callback) {
+queue("Jhon", 1500)
+  .then(function (Callback) {
     console.log(Callback);
-    queue("Ed", 2000).then(function (Callback) {
-      console.log(Callback);
-      queue("Jane", 500).then(function (Callback) {
+    queue("Ed", 2000)
+      .then(function (Callback) {
+        console.log(Callback);
+        queue("Jane", 500)
+          .then(function (Callback) {
+            console.log(Callback);
+          })
+          .catch(function () {
+            console.log(Callback);
+          });
+      })
+      .catch(function () {
         console.log(Callback);
       });
-    });
+  })
+  .catch(function () {
+    console.log(Callback);
   });
+
+// async- await
+
+async function main() {
+  try {
+    await queue("Jhon", 1500).then(function (Callback) {
+      console.log(Callback);
+      queue("Ed", 2000).then(function (Callback) {
+        console.log(Callback);
+        queue("Jane", 500).then(function (Callback) {
+          console.log(Callback);
+        });
+      });
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
 main();
+
+queue("Jhon", 1500)
+  .then((result) => {
+    console.log(result); // "Jhon"
+    return queue("Ed", 2000);
+  })
+  .then((result) => {
+    console.log(result); // "Ed"
+    return queue("Jane", 500);
+  })
+  .then((result) => {
+    console.log(result); // "Jane"
+  })
+  .catch((err) => {
+    console.error("Terjadi kesalahan:", err);
+  });
